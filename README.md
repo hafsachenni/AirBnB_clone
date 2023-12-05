@@ -1,13 +1,13 @@
-0x00. AirBnB clone - The console
+AirBnB CLONE - THE CONSOLE:
 
 The AirBnB-clone is the first step towards building our full web appliction designed to replicate the functionality of the widely recognized AirBnB platform
 
 
-DESCRIPTION
+DESCRIPTION:
 
-.create our data model
-.manage (create, update, destroy, etc) objects via a console / command interpreter
-.store and persist objects to a file (JSON file)
+-Create our data model
+-Manage (create, update, destroy, etc) objects via a console / command interpreter
+-Store and persist objects to a file (JSON file)
 
 The first piece is to manipulate a powerful storage system. This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”. This means: from your console code (the command interpreter itself) and from the front-end and RestAPI you will build later, you won’t have to pay attention (take care) of how your objects are stored.
 
