@@ -32,7 +32,7 @@ class BaseModel:
             *args: Variable-length argument list.
             **kwargs: Arbitrary keyword arguments.
         """
-        # import models
+
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -60,7 +60,7 @@ class BaseModel:
         """
         Updates the 'updated_at' attribute to the current timestamp.
         """
-        # import models
+
         self.updated_at = datetime.now()
         models.storage.save()
     
