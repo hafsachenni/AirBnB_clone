@@ -4,6 +4,9 @@ import uuid
 from datetime import datetime
 import models
 
+"""
+defines all common attributes/methods for other classes
+"""
 
 class BaseModel:
     """ The BaseModel class defines common attributes and methods that can be
@@ -29,20 +32,20 @@ class BaseModel:
             *args: Variable-length argument list.
             **kwargs: Arbitrary keyword arguments.
         """
-
+        # import models
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == "created_at" or key == "updated_at":
                         date_format = "%Y-%m-%dT%H:%M:%S.%f"
                         self.__dict__[key] = datetime.strptime(value, date_format)
-                else:
-                    self.__dict__[key] = value
+                    else:
+                        self.__dict__[key] = value
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new()
+            models.storage.new(self)
 
     def __str__(self):
         """
@@ -57,7 +60,8 @@ class BaseModel:
         """
         Updates the 'updated_at' attribute to the current timestamp.
         """
-        self.update_at = datetime.now()
+        # import models
+        self.updated_at = datetime.now()
         models.storage.save()
     
     def to_dict(self):
@@ -72,5 +76,3 @@ class BaseModel:
         obj['created_at'] = self.created_at.isoformat()
         obj['updated_at'] = self.updated_at.isoformat()
         return obj
-
-
