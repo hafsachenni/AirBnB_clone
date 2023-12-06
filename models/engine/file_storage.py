@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 
 class FileStorage:
 
-    def __init__(self, file_path, objects):
+    def __init__(self, file_path="file.json", objects=None):
         self.__file_path = file.json
         self.__objects = {}
 
@@ -16,14 +16,15 @@ class FileStorage:
         self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
-        objects = {key: obj.to_dict() for key, obj in self.__objects__.items()
-        with open (__file_path, "w", encoding='utf-8') as file: 
+        objects = {key: obj.to_dict() for key, obj in self.__objects.items()}
+        with open(self.__file_path, "w", encoding='utf-8') as file: 
             json.dump(objects, file)
 
 
     def reload(self):
         with open(self.__file__path, "r", encoding='utf-8') as file:
             self.__objects = json.load(file)
+
 
 
 
