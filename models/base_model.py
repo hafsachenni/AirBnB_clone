@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from uuid import uuid4
+import uuid
 from datetime import datetime
 import models
 
@@ -19,7 +19,6 @@ class BaseModel:
              self.created_at = datetime.now()
              self.updated_at = datetime.now()
              models.storage.new(self)
-             models.storage.save()
 
     def __str__(self):
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
