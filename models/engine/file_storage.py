@@ -41,8 +41,13 @@ class FileStorage(BaseModel):
         """
 
         with open(self.__file_path, 'r') as f:
-            json.load(f)
+            data_loaded = json.load(f)
+        
+            for key, obj_data in data_loaded.items():
+                self.__objects[key] = eval(obj["__class__"])(**obj)
 
-obj = FileStorage()
+        
 
-print(obj._FileStorage__file_path)
+# obj = FileStorage()
+
+# print(obj._FileStorage__file_path)
