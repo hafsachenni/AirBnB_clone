@@ -15,16 +15,16 @@ class FileStorage:
             self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
         def save(self):
-            objects = {key: obj.to_dict() for key, obj in self.__objects.items()}
+            object_s = {key: obj.to_dict() for key, obj in self.__objects.items()}
             with open(self.__file_path, "w", encoding='utf-8') as file: 
-                json.dump(objects, file)
+                json.dump(object_s, file)
 
 
         def reload(self):
             try:
                 with open(self.__file_path, "r", encoding='utf-8') as file:
                     loaded_objects = json.load(file)
-                    for key, obj_data in loaded_objects.items():
+                    for key, obj in loaded_objects.items():
                         self.__objects[key] = eval(obj["__class__"])(**obj)
             except FileNotFoundError:
                 pass
