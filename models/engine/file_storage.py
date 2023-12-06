@@ -15,9 +15,9 @@ class FileStorage:
             self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
         def save(self):
-            object_s = {key: obj.to_dict() for key, obj in self.__objects.items()}
+            objects = {key: obj.to_dict() for key, obj in self.__objects.items()}
             with open(self.__file_path, "w", encoding='utf-8') as file: 
-                json.dump(object_s, file)
+                json.dump(objects, file)
 
 
         def reload(self):
@@ -27,18 +27,4 @@ class FileStorage:
                     for key, obj in loaded_objects.items():
                         self.__objects[key] = eval(obj["__class__"])(**obj)
             except FileNotFoundError:
-                pass
-
-
-all_objs = storage.all()
-print("-- Reloaded objects --")
-for obj_id in all_objs.keys():
-    obj = all_objs[obj_id]
-    print(obj)
-
-print("-- Create a new object --")
-my_model = BaseModel()
-my_model.name = "My_First_Model"
-my_model.my_number = 89
-my_model.save()
-print(my_model)
+                pass          
