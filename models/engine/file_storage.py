@@ -22,10 +22,11 @@ class FileStorage:
 
 
     def reload(self):
-        with open(self.__file__path, "r", encoding='utf-8') as file:
-            self.__objects = json.load(file)
-
-
+        try:
+            with open(self.__file_path, "r", encoding='utf-8') as file:
+                loaded_objects = json.load(file)
+        except FileNotFoundError:
+            pass
 
 
 all_objs = storage.all()
