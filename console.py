@@ -3,6 +3,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """ entry point of the command interpreter"""
@@ -113,20 +114,20 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-        if len(args) < 3:
+        if len(args) == 2:
             print("** attribute name missing **")
             return
 
-        if len(args) < 4:
+        if len(args) == 3:
             print("** value missing **")
             return
 
         obj = storage.all()[str_repre]
         attribute_name = args[2]
         if hasattr(obj, attribute_name):
-            value = args[3].strip('"')
             setattr(obj, attribute_name, type(getattr(obj, attribute_name))(value))
-            storage.save()
+            obj.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
