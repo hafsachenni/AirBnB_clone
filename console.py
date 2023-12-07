@@ -83,5 +83,16 @@ class HBNBCommand(cmd.Cmd):
         del storage.all()[str_repre]
         storage.save()
 
+
+    def do_all(self, args):
+        """prints str representation of all objects"""
+        args = args.split()
+        if args and args[0] not in HBNBCommand.dict_classes:
+            print("** class doesn't exist **")
+            return
+        all_objects = [str(obj) for obj in storage.all().values()
+                        if not args or type(obj).__name__ == args[0]]
+        print(all_objects)
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
