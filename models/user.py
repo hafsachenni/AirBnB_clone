@@ -6,7 +6,7 @@ user module
 from models.base_model import BaseModel
 
 class User(BaseModel):
-    """class User """
+    """class User taht inherits from BaseModel"""
     email = ""
     password = ""
     first_name = ""
