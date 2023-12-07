@@ -4,6 +4,11 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """ entry point of the command interpreter"""
@@ -127,7 +132,6 @@ class HBNBCommand(cmd.Cmd):
         if hasattr(obj, attribute_name):
             setattr(obj, attribute_name, type(getattr(obj, attribute_name))(value))
             obj.save()
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
