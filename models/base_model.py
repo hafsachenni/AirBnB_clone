@@ -39,7 +39,8 @@ class BaseModel:
                 if key != "__class__":
                     if key == "created_at" or key == "updated_at":
                         date_format = "%Y-%m-%dT%H:%M:%S.%f"
-                        self.__dict__[key] = datetime.strptime(value, date_format)
+                        self.__dict__[key] = datetime.strptime(
+                                value, date_format)
                     else:
                         self.__dict__[key] = value
         else:
@@ -55,7 +56,8 @@ class BaseModel:
         Returns:
             str: A string containing the class name, id
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+                self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """
