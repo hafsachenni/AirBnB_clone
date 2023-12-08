@@ -8,22 +8,23 @@ import models
 defines all common attributes/methods for other classes
 """
 
+
 class BaseModel:
     """ The BaseModel class defines common attributes and methods that can be
-    inherited by other classes in the application. 
+    inherited by other classes in the application.
 
     Attributes:
         id (str): A universally unique identifier (UUID) for the object.
-        created_at (datetime): The timestamp indicating the object's creation time.
-        updated_at (datetime): The timestamp indicating the object's last update time.
+        created_at (datetime): indicating the object's creation time.
+        updated_at (datetime): indicating the object's last update time.
 
     Methods:
         __init__: Initializes a new instance of the BaseModel class.
         __str__: Returns a string representation of the object.
         save: Updates the 'updated_at' attribute to the current timestamp.
         to_dict: Converts the object to a dictionary format.
-    
     """
+
     def __init__(self, *args, **kwargs):
         """
         Initializes a new instance of the BaseModel class.
@@ -52,10 +53,10 @@ class BaseModel:
         Returns a string representation of the object.
 
         Returns:
-            str: A string containing the class name, object's ID, and attributes.
+            str: A string containing the class name, id
         """
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-    
+
     def save(self):
         """
         Updates the 'updated_at' attribute to the current timestamp.
@@ -63,7 +64,7 @@ class BaseModel:
 
         self.updated_at = datetime.now()
         models.storage.save()
-    
+
     def to_dict(self):
         """
         Converts the object to a dictionary format.
