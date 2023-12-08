@@ -48,6 +48,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("my_number", my_dict)
         self.assertIn("created_at", my_dict)
         self.assertIn("updated_at", my_dict)
-        self.assertIn("__clas__", my_dict)
+        self.assertIn("__class__", my_dict)
 
 
