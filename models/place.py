@@ -1,17 +1,9 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
-
-from models.base_model import BaseModel
-
-
-class Place(BaseModel):
-=======
 from models.base_model import BaseModel
 
 class Place(BaseModel):
     """class Place"""
 
->>>>>>> bc98cbaa80b0a1dfcb86561c5fa1dd7db034c33a
     city_id = ""
     user_id = ""
     name = ""
