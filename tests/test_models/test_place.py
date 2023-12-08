@@ -19,7 +19,7 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(place1.created_at, datetime)
         self.assertIsInstance(place1.updated_at, datetime)
     
-    def test_rev_str_repr(self):
+    def test_place_str_repr(self):
         place = Place()
         str_format = "[Place] ({}) {}".format(place.id, place.__dict__)
         self.assertEqual(place.__str__(), str_format)
