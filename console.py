@@ -10,13 +10,13 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """ entry point of the command interpreter"""
     prompt = "(hnbn) "
     dict_classes = {
             "BaseModel": BaseModel
             }
-
 
     def do_quit(self, arg):
         """Quit command to exit program\n"""
@@ -31,7 +31,6 @@ class HBNBCommand(cmd.Cmd):
         """does nothing"""
         pass
 
-
     def do_create(self, args):
         """creates a new instance of the given class"""
         args = args.split()
@@ -45,7 +44,6 @@ class HBNBCommand(cmd.Cmd):
         new_object = HBNBCommand.dict_classes[args[0]]()
         storage.save()
         print(new_object.id)
-
 
     def do_show(self, args):
         """prints str representation of an obj"""
@@ -67,8 +65,6 @@ class HBNBCommand(cmd.Cmd):
 
         print(storage.all()[str_repre])
 
-
-
     def do_destroy(self, args):
         """deletes objects based on id and class name"""
         args = args.split()
@@ -89,7 +85,6 @@ class HBNBCommand(cmd.Cmd):
         del storage.all()[str_repre]
         storage.save()
 
-
     def do_all(self, args):
         """prints str representation of all objects"""
         args = args.split()
@@ -99,6 +94,7 @@ class HBNBCommand(cmd.Cmd):
         all_objects = [str(obj) for obj in storage.all().values()
                         if not args or type(obj).__name__ == args[0]]
         print(all_objects)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
