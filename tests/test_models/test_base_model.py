@@ -34,7 +34,7 @@ class TestBaseModel(unittest.TestCase):
         obj = BaseModel()
         str_format = "[BaseModel] ({}) {}".format(obj.id, obj.__dict__)
         self.assertEqual(obj.__str__(), str_format)
-
+    
     def test_save(self):
         obj = BaseModel()
         updated_before_save = obj.updated_at
