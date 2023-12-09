@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         str_repre = "{}.{}".format(args[0], args[1])
-        if str_repre not in storage.all():
+        if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
 
@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         str_repre = "{}.{}".format(args[0], args[1])
-        if str_repre not in storage.all():
+        if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
 
