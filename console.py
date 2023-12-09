@@ -16,15 +16,14 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """ entry point of the command interpreter"""
     prompt = "(hbnb) "
-    dict_classes = {
-            "BaseModel": BaseModel,
-            "User": User,
-            "City": City,
-            "State": State,
-            "Amenity": Amenity,
-            "Place": Place,
-            "Review": Review
-    }
+    dict_classes = {"BaseModel": BaseModel,
+                    "User": User,
+                    "City": City,
+                    "State": State,
+                    "Amenity": Amenity,
+                    "Place": Place,
+                    "Review": Review
+                    }
 
     def do_quit(self, line):
         """Quit command to exit program"""
@@ -40,7 +39,10 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """creates a new instance of the given class"""
+        """creates a new instance of the given class
+        create class name
+        create BaseModel
+        """
         args = args.split()
         if not args:
             print("**class name missing**")
@@ -48,13 +50,15 @@ class HBNBCommand(cmd.Cmd):
         if args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
-
-        new_object = HBNBCommand.dict_classes[args[0]]()
+        new_object = eval(args[0])()
         storage.save()
         print(new_object.id)
 
     def do_show(self, args):
-        """prints str representation of an obj"""
+        """prints str representation of an obj
+        based on claas name and id
+        shows class name
+        """
         args = args.split()
         if not args:
             print("** class name missing **")
@@ -65,16 +69,16 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-
         str_repre = "{}.{}".format(args[0], args[1])
         if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
-
         print(storage.all()[str_repre])
 
     def do_destroy(self, args):
-        """deletes objects based on id and class name"""
+        """deletes objects based on id and class name
+        destroys class name and id
+        """
         args = args.split()
         if not args:
             print("** class name missing **")
@@ -85,16 +89,18 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-
         str_repre = "{}.{}".format(args[0], args[1])
-        if str_repre not in storage.all():
+        if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
         del storage.all()[str_repre]
         storage.save()
 
     def do_all(self, args):
-        """prints str representation of all objects"""
+        """prints str representation of all objects
+        based on class or not
+        all class names, doesnt matter
+        """
         args = args.split()
         if not args:
             print([obj.__str__() for obj in storage.all().values()])
@@ -106,10 +112,13 @@ class HBNBCommand(cmd.Cmd):
         for obj in storage.all().values():
             if obj.__class__.__name__ == args[0]:
                 list_objects += [obj.__str__()]
-        print('\n'.join(list_objects))
+        print(list_objects)
 
     def do_update(self, args):
-        """updates objects"""
+        """updates objects
+        by modifying an attribute
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """
         args = args.split()
         if not args:
             print("** class name missing **")
@@ -130,7 +139,6 @@ class HBNBCommand(cmd.Cmd):
         if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
-
         obj = storage.all()[str_repre]
         setattr(obj, args[2], args[3])
         obj.save()
