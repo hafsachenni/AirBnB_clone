@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+defines the console module
+"""
 import cmd
 from models.base_model import BaseModel
 from models import storage
@@ -15,7 +17,13 @@ class HBNBCommand(cmd.Cmd):
     """ entry point of the command interpreter"""
     prompt = "(hnbn) "
     dict_classes = {
-            "BaseModel": BaseModel
+            "BaseModel": BaseModel,
+            "User": User,
+            "City": City,
+            "State": State,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
             }
 
     def do_quit(self, arg):
