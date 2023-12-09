@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
         for obj in storage.all().values():
             if obj.__class__.__name__ == args[0]:
                 list_objects += [obj.__str__()]
-        print(list_objects))
+        print(list_objects)
 
     def do_update(self, args):
         """updates objects"""
