@@ -12,20 +12,30 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 
 class FileStorage:
     """
+     serializes instances to a JSON file and deserialize
      serializes instances to a JSON file and deserialize
     """
 
     __file_path = "file.json"
     __objects = {}
 
+
     def all(self):
         """
         returns the dictionary __objects
         """
         return self.__objects
+
 
     def new(self, obj):
         """
@@ -48,6 +58,7 @@ class FileStorage:
 
     def reload(self):
         """
+        deserializes the JSON file to __objects
         deserializes the JSON file to __objects
         """
         try:

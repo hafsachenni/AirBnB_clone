@@ -1,55 +1,81 @@
 #!/usr/bin/python3
-"""
-unittest for the basemodel module
-"""
 
-import unittest
+import uuid
 from datetime import datetime
-import time
-from models.base_model import BaseModel
+import models
+
+"""
+defines all common attributes/methods for other classes
+"""
 
 
-class TestBaseModel(unittest.TestCase):
-    """Testing BaseModel class"""
+class BaseModel:
+    """ The BaseModel class defines common attributes and methods that can be
+    inherited by other classes in the application.
 
-    def test_instances_type(self):
-        obj = BaseModel()
-        self.assertIs(BaseModel, type(obj))
-        self.assertIsInstance(obj.id, str)
-        self.assertIsInstance(obj.created_at, datetime)
-        self.assertIsInstance(obj.updated_at, datetime)
-    
-    def test_id_uniqueness(self):
-        obj1 = BaseModel()
-        obj2 = BaseModel()
-        self.assertNotEqual(obj1.id, obj2.id)
+    Attributes:
+        id (str): A universally unique identifier (UUID) for the object.
+        created_at (datetime): indicating the object's creation time.
+        updated_at (datetime): indicating the object's last update time.
 
-    def test_created_at_two_timestamps(self):
-        obj3 = BaseModel()
-        time.sleep(0.03)
-        obj4 = BaseModel()
-        self.assertNotEqual(obj3.created_at, obj4.created_at)
+    Methods:
+        __init__: Initializes a new instance of the BaseModel class.
+        __str__: Returns a string representation of the object.
+        save: Updates the 'updated_at' attribute to the current timestamp.
+        to_dict: Converts the object to a dictionary format.
+    """
 
-    def test_str_format(self):
-        obj = BaseModel()
-        str_format = "[BaseModel] ({}) {}".format(obj.id, obj.__dict__)
-        self.assertEqual(obj.__str__(), str_format)
-    
-    def test_save(self):
-        obj = BaseModel()
-        updated_before_save = obj.updated_at
-        obj.save()
-        updated_after_save = obj.updated_at
-        self.assertNotEqual(updated_before_save, updated_after_save)
+    def __init__(self, *args, **kwargs):
+        """
+        Initializes a new instance of the BaseModel class.
 
-    def test_to_dict(self):
-        obj = BaseModel()
-        obj.name = "My First Model"
-        obj.my_number = 78
-        my_dict = obj.to_dict()
-        self.assertIsInstance(my_dict, dict)
-        self.assertIn("name", my_dict)
-        self.assertIn("my_number", my_dict)
-        self.assertIn("created_at", my_dict)
-        self.assertIn("updated_at", my_dict)
-        self.assertIn("__class__", my_dict)
+        Args:
+            *args: Variable-length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
+
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key == "created_at" or key == "updated_at":
+                        date_format = "%Y-%m-%dT%H:%M:%S.%f"
+                        self.__dict__[key] = datetime.strptime(
+                                value, date_format)
+                    else:
+                        self.__dict__[key] = value
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
+
+    def __str__(self):
+        """
+        Returns a string representation of the object.
+
+        Returns:
+            str: A string containing the class name, id
+        """
+        return "[{}] ({}) {}".format(
+                self.__class__.__name__, self.id, self.__dict__)
+
+    def save(self):
+        """
+        Updates the 'updated_at' attribute to the current timestamp.
+        """
+
+        self.updated_at = datetime.now()
+        models.storage.save()
+
+    def to_dict(self):
+        """
+        Converts the object to a dictionary format.
+
+        Returns:
+            dict: A dictionary representation of the object.
+        """
+        obj = self.__dict__.copy()
+        obj['__class__'] = self.__class__.__name__
+        obj['created_at'] = self.created_at.isoformat()
+        obj['updated_at'] = self.updated_at.isoformat()
+        return obj
