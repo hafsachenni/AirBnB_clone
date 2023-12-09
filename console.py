@@ -26,11 +26,11 @@ class HBNBCommand(cmd.Cmd):
             "Review": Review
             }
 
-    def do_quit(self, arg):
+    def do_quit(self, line):
         """Quit command to exit program"""
         return True
 
-    def do_EOF(self, arg):
+    def do_EOF(self, line):
         """Eof command to exit program"""
         print("")
         return True
