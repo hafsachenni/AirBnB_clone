@@ -48,7 +48,6 @@ class HBNBCommand(cmd.Cmd):
         if args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
-
         new_object = eval(args[0])()
         storage.save()
         print(new_object.id)
@@ -65,12 +64,10 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-
         str_repre = "{}.{}".format(args[0], args[1])
         if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
-
         print(storage.all()[str_repre])
 
     def do_destroy(self, args):
@@ -85,9 +82,8 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-
         str_repre = "{}.{}".format(args[0], args[1])
-        if str_repre not in storage.all():
+        if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
         del storage.all()[str_repre]
@@ -106,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
         for obj in storage.all().values():
             if obj.__class__.__name__ == args[0]:
                 list_objects += [obj.__str__()]
-        print('\n'.join(list_objects))
+        print(list_objects))
 
     def do_update(self, args):
         """updates objects"""
@@ -130,7 +126,6 @@ class HBNBCommand(cmd.Cmd):
         if str_repre not in storage.all().keys():
             print("** no instance found **")
             return
-
         obj = storage.all()[str_repre]
         setattr(obj, args[2], args[3])
         obj.save()
