@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-
+"""
+defines the basemodel module
+"""
 import uuid
 from datetime import datetime
 import models
-
-"""
-defines all common attributes/methods for other classes
-"""
 
 
 class BaseModel:
@@ -33,7 +31,6 @@ class BaseModel:
             *args: Variable-length argument list.
             **kwargs: Arbitrary keyword arguments.
         """
-
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
