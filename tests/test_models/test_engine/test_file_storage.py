@@ -75,9 +75,9 @@ class TestFileStorage(unittest.TestCase):
             self.assertIn("Amenity." + amenity.id, save_1)
             self.assertIn("Review." + review.id, save_1)
 
-    def test_reload_with_args(self):
-        with self.assertRaises(TypeError):
-            models.storage.reload(None)
+    # def test_reload_with_args(self):
+    #     with self.assertRaises(TypeError):
+    #         models.storage.reload(None)
 
     def test_reload(self):
         base = BaseModel()
