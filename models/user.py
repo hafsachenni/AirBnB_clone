@@ -1,17 +1,17 @@
 #!/usr/bin/python3
 """
-user module
+define the user's module
 """
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """class User
-    attributes
-    users email
-    password
-    users first name
-    users last name
+    """class named User
+    attributes:
+    email(str):users email
+    password(str): users password
+    first name(str): users first name
+    last name(sr): users last name
     """
     email = ""
     password = ""
