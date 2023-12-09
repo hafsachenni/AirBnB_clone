@@ -19,8 +19,8 @@ class HBNBCommand(cmd.Cmd):
     dict_classes = {
             "BaseModel": BaseModel,
             "User": User,
-            "State": State,
             "City": City,
+            "State": State,
             "Amenity": Amenity,
             "Place": Place,
             "Review": Review
@@ -103,9 +103,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         list_objects = []
-        for objct in storage.all().values():
-            if objct.__class__.name == args[0]:
-                list_objects += [objct.__str__()]
+        for obj in storage.all().values():
+            if obj.__class__.__name__ == args[0]:
+                list_objects += [obj.__str__()]
         print(list_objects)
 
     def do_update(self, args):
