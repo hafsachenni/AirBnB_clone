@@ -39,3 +39,8 @@ class TestReview(unittest.TestCase):
         self.assertIn("created_at", review.to_dict())
         self.assertIn("updated_at", review.to_dict())
         self.assertIn("__class__", review.to_dict())
+
+    def test_ids(self):
+        review1 = Review()
+        review2 = Review()
+        self.assertEqual(review1.id, review2.id)

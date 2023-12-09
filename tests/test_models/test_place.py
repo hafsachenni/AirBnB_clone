@@ -30,8 +30,7 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(place1.latitude, float)
         self.assertIsInstance(place1.longitude, float)
         self.assertIsInstance(place1.amenity_ids, list)
-
-    
+ 
     def test_place_str_repr(self):
         place = Place()
         str_format = "[Place] ({}) {}".format(place.id, place.__dict__)
