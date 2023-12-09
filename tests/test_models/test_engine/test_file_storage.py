@@ -41,8 +41,7 @@ class TestFileStorage(unittest.TestCase):
         user = User()
         models.storage.new(base)
         models.storage.new(user)
-        self.assertIn("BaseModel.{}".format(base.id),
-                      models.storage.all().keys())
+        self.assertIn("BaseModel.{}".format(base.id), models.storage.all().keys())
         self.assertIn("User.{}".format(user.id), models.storage.all().keys())
 
     def test_with_args(self):
