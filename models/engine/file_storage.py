@@ -32,7 +32,7 @@ class FileStorage:
         sets in __objects the obj with key <obj class name>.id
         """
 
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = f"{type(obj).__name__}.{obj.id}"
         self.__objects[key] = obj
 
     def save(self):
@@ -40,7 +40,8 @@ class FileStorage:
         serializes __objects to the JSON file (path: __file_path)
         """
 
-        data_to_save = {key: obj.to_dict() for key, obj in self.__objects.items()}
+        data_to_save = {key: obj.to_dict()
+                        for key, obj in self.__objects.items()}
 
         with open(self.__file_path, 'w', encoding="utf-8") as jfile:
             json.dump(data_to_save, jfile)
@@ -54,6 +55,7 @@ class FileStorage:
                 data_loaded = json.load(pfile)
 
                 for key, obj_data in data_loaded.items():
-                    self.__objects[key] = eval(obj_data["__class__"])(**obj_data)
+                    self.__objects[key] = eval(obj_data["__class__"])(
+                        **obj_data)
         except FileNotFoundError:
             pass
