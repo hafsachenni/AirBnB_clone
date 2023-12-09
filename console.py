@@ -130,10 +130,9 @@ class HBNBCommand(cmd.Cmd):
             return
 
         obj = storage.all()[str_repre]
-        attribute_name = args[2]
-        if hasattr(obj, attribute_name):
-            setattr(obj, attribute_name, type(getattr(obj, attribute_name))(value))
-            obj.save()
+
+        setattr(obj, args[2], args[3])
+        obj.save()
 
 
 if __name__ == '__main__':
