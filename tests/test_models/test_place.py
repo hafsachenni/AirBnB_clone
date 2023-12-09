@@ -18,6 +18,18 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(place1.id, str)
         self.assertIsInstance(place1.created_at, datetime)
         self.assertIsInstance(place1.updated_at, datetime)
+        self.assertIsInstance(place1.name, str)
+        self.assertIsInstance(place1.city_id, str)
+        self.assertIsInstance(place1.user_id, str)
+        self.assertIsInstance(place1.description, str)
+        self.assertIsInstance(place1.number_bathrooms, int)
+        self.assertIsInstance(place1.number_rooms, int)
+        self.assertIsInstance(place1.max_guest, int)
+        self.assertIsInstance(place1.price_by_night, int)
+        self.assertIsInstance(place1.latitude, float)
+        self.assertIsInstance(place1.longitude, float)
+        self.assertIsInstance(place1.amenity_ids, list)
+
     
     def test_place_str_repr(self):
         place = Place()
@@ -38,8 +50,14 @@ class TestPlace(unittest.TestCase):
 
     def test_place_to_dict(self):
         place = Place()
+        place.price_by_night = 500
+        place.max_guest = 2
+        place.number_bathrooms = 1
 
         self.assertIn("id", place.to_dict())
         self.assertIn("created_at", place.to_dict())
         self.assertIn("updated_at", place.to_dict())
+        self.assertIn("price_by_night", place.to_dict())
+        self.assertIn("max_guest", place.to_dict())
+        self.assertIn("number_bathrooms", place.to_dict())
         self.assertIn("__class__", place.to_dict())

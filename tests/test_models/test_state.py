@@ -15,7 +15,7 @@ class TestState(unittest.TestCase):
     """
     def test_type_of_name(self):
         state = State()
-        self.assertEqual(type(State.name), str)
+        self.assertEqual(type(state.name), str)
 
 
     def test_ids(self):
@@ -28,3 +28,11 @@ class TestState(unittest.TestCase):
         state = State()
         expected = "[State] ({}) {}".format(state.id, state.__dict__)
         self.assertEqual(state.__str__(), expected)
+    
+    def test_place_save(self):
+        state = State()
+
+        updated_before_save = place_3.updated_at
+        place_3.save()
+        updated_after_save = place_3.updated_at
+        self.assertNotEqual(updated_before_save, updated_after_save)
