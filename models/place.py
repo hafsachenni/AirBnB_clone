@@ -6,8 +6,7 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """
-    place class
+    """place class
     attributes:
     cities id
     users id
