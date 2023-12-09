@@ -7,6 +7,7 @@ from models.engine.file_storage import FileStorage
 import models
 from models.user import User
 from models.base_model import BaseModel
+from models import storage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -14,7 +15,7 @@ class TestFileStorage(unittest.TestCase):
     testing the filestorage class
     """
 
-    def test_instance(self):
+    def test_instance_storage(self):
         self.assertIs(FileStorage, type(FileStorage()))
         self.assertIsInstance(FileStorage._FileStorage__objects, dict)
         self.assertIsInstance(FileStorage._FileStorage__file_path, str)
@@ -36,6 +37,7 @@ class TestFileStorage(unittest.TestCase):
         user = User()
         models.storage.new(base)
         models.storage.new(user)
-        self.assertIn("BaseModel.{}".format(base.id),
-                      models.storage.all().keys())
+
+        self.assertIn("BaseModel.{}".format(base.id), models.storage.all().keys())
         self.assertIn("User.{}".format(user.id), models.storage.all().keys())
+
