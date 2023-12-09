@@ -49,8 +49,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        new_object = HBNBCommand.dict_classes[args[0]]()
-        storage.new(new_object)
+        new_object = eval(args[0])()
         storage.save()
         print(new_object.id)
 
