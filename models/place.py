@@ -8,6 +8,18 @@ from models.base_model import BaseModel
 class Place(BaseModel):
     """
     place class
+    attributes:
+    cities id
+    users id
+    places name
+    description of the place
+    num of rooms
+    num of bathrooms
+    max num of guests
+    price by night
+    latitude of the place
+    longitude of place
+    list of ids of the amenity
     """
     city_id = ""
     user_id = ""
