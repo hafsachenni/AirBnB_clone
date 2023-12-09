@@ -97,9 +97,9 @@ class HBNBCommand(cmd.Cmd):
         """prints str representation of all objects"""
         args = args.split()
         if not args:
-            print([objct.__str__() for objct in storage.all().values()])
+            print([obj.__str__() for obj in storage.all().values()])
             return
-        if args and args[0] not in HBNBCommand.dict_classes:
+        if args[0] not in HBNBCommand.dict_classes:
             print("** class doesn't exist **")
             return
         list_objects = []
