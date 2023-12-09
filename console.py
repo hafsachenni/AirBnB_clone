@@ -50,6 +50,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         new_object = HBNBCommand.dict_classes[args[0]]()
+        storage.new(new_object)
         storage.save()
         print(new_object.id)
 
