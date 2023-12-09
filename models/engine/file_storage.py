@@ -32,7 +32,8 @@ class FileStorage:
         sets in __objects the obj with key <obj class name>.id
         """
 
-        key = f"{type(obj).__name__}.{obj.id}"
+        # key = f"{type(obj).__name__}.{obj.id}"
+        key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
 
     def save(self):
@@ -42,16 +43,16 @@ class FileStorage:
 
         data_to_save = {key: obj.to_dict() for key, obj in self.__objects.items()}
 
-        with open(self.__file_path, 'w', encoding="utf-8") as f:
-            json.dump(data_to_save, f)
+        with open(self.__file_path, 'w', encoding="utf-8") as jfile:
+            json.dump(data_to_save, jfile)
 
     def reload(self):
         """
         deserializes the JSON file to __objects
         """
         try:
-            with open(self.__file_path, 'r', encoding="utf-8") as f:
-                data_loaded = json.load(f)
+            with open(self.__file_path, 'r', encoding="utf-8") as pfile:
+                data_loaded = json.load(pfile)
 
                 for key, obj_data in data_loaded.items():
                     self.__objects[key] = eval(obj_data["__class__"])(**obj_data)
