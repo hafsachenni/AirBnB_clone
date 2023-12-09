@@ -2,7 +2,6 @@
 """
 defines storage module
 """
-
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -16,6 +15,8 @@ from models.review import Review
 class FileStorage:
     """
      serializes instances to a JSON file and deserialize
+     file_path: path to the json file
+     objects: dic that stores all objects
     """
 
     __file_path = "file.json"
@@ -31,7 +32,6 @@ class FileStorage:
         """
         sets in __objects the obj with key <obj class name>.id
         """
-
         key = f"{type(obj).__name__}.{obj.id}"
         self.__objects[key] = obj
 
@@ -39,7 +39,6 @@ class FileStorage:
         """
         serializes __objects to the JSON file (path: __file_path)
         """
-
         data_to_save = {key: obj.to_dict()
                         for key, obj in self.__objects.items()}
 
