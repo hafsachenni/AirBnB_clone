@@ -19,8 +19,8 @@ class HBNBCommand(cmd.Cmd):
     dict_classes = {
             "BaseModel": BaseModel,
             "User": User,
-            "City": City,
             "State": State,
+            "City": City,
             "Amenity": Amenity,
             "Place": Place,
             "Review": Review
