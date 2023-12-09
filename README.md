@@ -13,15 +13,19 @@ The AirBnB-clone is the first step towards building our full web appliction desi
 
 ## DESCRIPTION:
 
--Create our data model
+### The console:
 
--Manage (create, update, destroy, etc) objects via a console or command interpreter
+    - Create our data model
 
--Store and persist objects to a file (JSON file)
+    - Manage (create, update, destroy, etc) objects via a console or command interpreter
+
+    - Store and persist objects to a file (JSON file)
 
 The first piece is to manipulate a powerful storage system. This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”. This means: from your console code (the command interpreter itself) and from the front-end and RestAPI you will build later, you won’t have to pay attention (take care) of how your objects are stored.
+
 This abstraction will also allow you to change the type of storage easily without updating all of your codebase.
-The console will be a tool to validate this storage engine
+
+The console will be a tool to validate this storage engine.
 
 ## HOW TO START IT:
 
@@ -75,7 +79,7 @@ EOF  all  create  destroy  help  quit  show  update
 ## EXAMPLES:
 
 - Create:
-Usage: create<class name>
+Usage: create <class name>
 
 ```
 (hbnb) create BaseModel
@@ -84,7 +88,7 @@ Usage: create<class name>
 ```
 
 - show:
-Usage: show<class name> <_id>
+Usage: show <class name> <_id>
 
 ```
 (hbnb) show BaseModel 0fb277e8-547b-4db6-a004-377809099387
