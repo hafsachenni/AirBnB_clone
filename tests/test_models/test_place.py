@@ -15,6 +15,7 @@ class TestPlace(unittest.TestCase):
     def test_instances_type(self):
         place1 = Place()
         self.assertIs(Place, type(place1))
+        self.assertIsInstance(place1, BaseModel)
         self.assertIsInstance(place1.id, str)
         self.assertIsInstance(place1.created_at, datetime)
         self.assertIsInstance(place1.updated_at, datetime)
