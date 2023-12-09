@@ -120,22 +120,18 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-
+        if len(args) == 2:
+            print("** attribute name missing **")
+            return
+        if len(args) == 3:
+            print("** value missing **")
+            return
         str_repre = "{}.{}".format(args[0], args[1])
         if str_repre not in storage.all():
             print("** no instance found **")
             return
 
-        if len(args) == 2:
-            print("** attribute name missing **")
-            return
-
-        if len(args) == 3:
-            print("** value missing **")
-            return
-
         obj = storage.all()[str_repre]
-
         setattr(obj, args[2], args[3])
         obj.save()
 
