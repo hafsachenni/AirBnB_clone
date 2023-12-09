@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("**class name missing**")
             return
-        if args[0] not in HBNBCommand.dict_classes:
+        if args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
 
@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in HBNBCommand.dict_classes:
+        if args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
         if len(args) == 1:
@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in HBNBCommand.dict_classes:
+        if args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
         if len(args) == 1:
@@ -96,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """prints str representation of all objects"""
         args = args.split()
-        if args and args[0] not in HBNBCommand.dict_classes:
+        if args and args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
         all_objects = [str(obj) for obj in storage.all().values()
@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in HBNBCommand.dict_classes:
+        if args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
         if len(args) == 1:
