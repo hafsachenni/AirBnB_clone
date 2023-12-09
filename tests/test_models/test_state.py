@@ -29,10 +29,19 @@ class TestState(unittest.TestCase):
         expected = "[State] ({}) {}".format(state.id, state.__dict__)
         self.assertEqual(state.__str__(), expected)
     
-    def test_place_save(self):
+    def test_state_save(self):
         state = State()
-
-        updated_before_save = place_3.updated_at
-        place_3.save()
-        updated_after_save = place_3.updated_at
+        updated_before_save = state.updated_at
+        state.save()
+        updated_after_save = state.updated_at
         self.assertNotEqual(updated_before_save, updated_after_save)
+    
+    def test_place_to_dict(self):
+        state = State()
+        state.name = "ISNOTREAL"
+
+        self.assertIn("id", state.to_dict())
+        self.assertIn("created_at", state.to_dict())
+        self.assertIn("updated_at", state.to_dict())
+        self.assertIn("name", state.to_dict())
+        self.assertIn("__class__", state.to_dict())
