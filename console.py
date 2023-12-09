@@ -16,15 +16,14 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """ entry point of the command interpreter"""
     prompt = "(hbnb) "
-    dict_classes = {
-            "BaseModel": BaseModel,
-            "User": User,
-            "City": City,
-            "State": State,
-            "Amenity": Amenity,
-            "Place": Place,
-            "Review": Review
-    }
+    dict_classes = {"BaseModel": BaseModel,
+                    "User": User,
+                    "City": City,
+                    "State": State,
+                    "Amenity": Amenity,
+                    "Place": Place,
+                    "Review": Review
+                    }
 
     def do_quit(self, line):
         """Quit command to exit program"""
