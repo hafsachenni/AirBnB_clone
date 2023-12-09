@@ -7,7 +7,15 @@ from models.engine.file_storage import FileStorage
 import models
 from models.user import User
 from models.base_model import BaseModel
-from models import storage
+import json
+import os
+from datetime import datetime
+from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
 
 
 class TestFileStorage(unittest.TestCase):
@@ -27,10 +35,6 @@ class TestFileStorage(unittest.TestCase):
 
     def test_FileStorage(self):
         self.assertEqual(type(models.storage), FileStorage)
-
-    def test_with_args(self):
-        with self.assertRaises(TypeError):
-            FileStorage(None)
          
     def test_new(self):
         base = BaseModel()
@@ -40,4 +44,33 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertIn("BaseModel.{}".format(base.id), models.storage.all().keys())
         self.assertIn("User.{}".format(user.id), models.storage.all().keys())
+    def test_with_args(self):
+        with self.assertRaises(TypeError):
+            FileStorage(None)
 
+    def test_save(self):
+        base = BaseModel()
+        user = User()
+        state = State()
+        place = Place()
+        city = City()
+        amenity = Amenity()
+        review = Review()
+        models.storage.new(base)
+        models.storage.new(user)
+        models.storage.new(state)
+        models.storage.new(place)
+        models.storage.new(city)
+        models.storage.new(amenity)
+        models.storage.new(review)
+        models.storage.save()
+        save_1 = ""
+        with open("file.json", "r") as file:
+            save_1 = file.read()
+            self.assertIn("BaseModel." + base.id, save_1)
+            self.assertIn("User." + user.id, save_1)
+            self.assertIn("State." + state.id, save_1)
+            self.assertIn("Place." + place.id, save_1)
+            self.assertIn("City." + city.id, save_1)
+            self.assertIn("Amenity." + amenity.id, save_1)
+            self.assertIn("Review." + review.id, save_1)
