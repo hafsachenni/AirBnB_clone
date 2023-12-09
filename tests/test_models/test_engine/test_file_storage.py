@@ -30,3 +30,6 @@ class TestFileStorage(unittest.TestCase):
     def test_with_args(self):
         with self.assertRaises(TypeError):
             FileStorage(None)
+
+if __name__ = "__main__":
+    unittest.main()
