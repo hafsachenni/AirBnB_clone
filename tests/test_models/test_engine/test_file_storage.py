@@ -23,7 +23,7 @@ class TestFileStorage(unittest.TestCase):
     testing the filestorage class
     """
 
-    def test_instance_storage(self):
+    def test_instance(self):
         self.assertIs(FileStorage, type(FileStorage()))
         self.assertIsInstance(FileStorage._FileStorage__objects, dict)
         self.assertIsInstance(FileStorage._FileStorage__file_path, str)
@@ -41,9 +41,10 @@ class TestFileStorage(unittest.TestCase):
         user = User()
         models.storage.new(base)
         models.storage.new(user)
-
-        self.assertIn("BaseModel.{}".format(base.id), models.storage.all().keys())
+        self.assertIn("BaseModel.{}".format(base.id),
+                      models.storage.all().keys())
         self.assertIn("User.{}".format(user.id), models.storage.all().keys())
+
     def test_with_args(self):
         with self.assertRaises(TypeError):
             FileStorage(None)
