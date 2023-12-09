@@ -8,7 +8,7 @@ from models.state import State
 from datetime import datetime
 from models.base_model import BaseModel
 
-class Teststate(unittest.TestCase):
+class TestState(unittest.TestCase):
     """
     testing of state class
     that inherits from basemodel

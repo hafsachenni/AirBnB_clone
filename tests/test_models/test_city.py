@@ -8,7 +8,7 @@ from datetime import datetime
 from models.city import City
 from models.base_model import BaseModel
 
-class Testcity(unittest.TestCase):
+class TestCity(unittest.TestCase):
     """
     unittest for the city class
     """

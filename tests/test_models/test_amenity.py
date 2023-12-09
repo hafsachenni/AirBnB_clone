@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 from models.amenity import Amenity
 
 
-class Testamenity(unittest.TestCase):
+class TestAmenity(unittest.TestCase):
     """
     unittesting the amenity class
     """
