@@ -30,7 +30,7 @@ class TestFileStorage(unittest.TestCase):
 
 
     def test_all_in_storage(self):
-        self.assertEqual(type(models.storage.all()), dict) 
+        self.assertEqual(type(models.storage.all()), dict)
 
 
     def test_FileStorage(self):
@@ -104,6 +104,3 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("City." + city.id, ob)
         self.assertIn("Amenity." + amenity.id, ob)
         self.assertIn("Review." + review.id, ob)
-
-if __name__ == "__main__":
-    unittest.main()
