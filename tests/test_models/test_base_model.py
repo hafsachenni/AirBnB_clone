@@ -7,6 +7,7 @@ import unittest
 from datetime import datetime
 import time
 from models.base_model import BaseModel
+import models
 
 
 class TestBaseModel(unittest.TestCase):
@@ -52,4 +53,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("my_number", my_dict)
         self.assertIn("created_at", my_dict)
         self.assertIn("updated_at", my_dict)
-        self.assertIn("__class__", my_dict)    
+        self.assertIn("__class__", my_dict)
+
+    def test_2different_updatedat(self):
+        base1 = BaseModel()
+        base2 = BaseModel()
+        self.assertNotEqual(base1.updated_at, base2.updated_at)
+
+    def test_2differet_createdat(self):
+        base1 = BaseModel()
+        base2 = BaseModel()
+        self.assertNotEqual(base1.created_at, base2.created_at)
