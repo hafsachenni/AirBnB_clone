@@ -38,11 +38,11 @@ class TestFileStorage(unittest.TestCase):
          
     def test_new(self):
         base = BaseModel()
-        # user = User()
+        user = User()
         models.storage.new(base)
-        # models.storage.new(user)
+        models.storage.new(user)
         self.assertIn("BaseModel.{}".format(base.id), models.storage.all().keys())
-        # self.assertIn("User.{}".format(user.id), models.storage.all().keys())
+        self.assertIn("User.{}".format(user.id), models.storage.all().keys())
 
     def test_with_args(self):
         with self.assertRaises(TypeError):
