@@ -3,6 +3,7 @@
 defines the console module
 """
 import cmd
+import re
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
