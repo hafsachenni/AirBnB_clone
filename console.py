@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
         if args[0] not in HBNBCommand.dict_classes.keys():
             print("** class doesn't exist **")
             return
-        new_object = eval(args[0])()
+        new_object = globals()[args[0]]()
         storage.save()
         print(new_object.id)
 
