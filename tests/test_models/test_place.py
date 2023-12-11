@@ -2,11 +2,11 @@
 """
 unittest for the Place module
 """
-
 import unittest
 from datetime import datetime
 from models.place import Place
 from models.base_model import BaseModel
+
 
 class TestPlace(unittest.TestCase):
     """
@@ -36,7 +36,7 @@ class TestPlace(unittest.TestCase):
         str_format = "[Place] ({}) {}".format(place.id, place.__dict__)
         self.assertEqual(place.__str__(), str_format)
 
-    def _place_ids(self):
+    def test_place_ids(self):
         place_1 = Place()
         place_2 = Place()
         self.assertNotEqual(place_1.id, place_2.id)
