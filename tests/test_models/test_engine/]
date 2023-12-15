@@ -22,6 +22,7 @@ class TestFileStorage(unittest.TestCase):
     """
     testing the filestorage class
     """
+
     def test_instance(self):
         self.assertIs(FileStorage, type(FileStorage()))
         self.assertIsInstance(FileStorage._FileStorage__objects, dict)

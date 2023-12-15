@@ -2,11 +2,11 @@
 """
 unittest for the Place module
 """
-
 import unittest
 from datetime import datetime
 from models.user import User
 from models.base_model import BaseModel
+
 
 class TestPlace(unittest.TestCase):
     """
@@ -14,12 +14,12 @@ class TestPlace(unittest.TestCase):
     """
     def test_instances_type(self):
         user_1 = User()
-        self.assertIs(User, user_1)
+        self.assertIs(type(user_1), User)
         self.assertIsInstance(user_1.id, str)
-        self.assertIsInstance(user_1.first_name, datetime)
-        self.assertIsInstance(user_1.last_name, datetime)
-        self.assertIsInstance(user_1.email, datetime)
-        self.assertIsInstance(user_1.password, datetime)
+        self.assertIsInstance(user_1.first_name, str)
+        self.assertIsInstance(user_1.last_name, str)
+        self.assertIsInstance(user_1.email, str)
+        self.assertIsInstance(user_1.password, str)
         self.assertIsInstance(user_1.updated_at, datetime)
         self.assertIsInstance(user_1.created_at, datetime)
     

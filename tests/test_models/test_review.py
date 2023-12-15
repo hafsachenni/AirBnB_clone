@@ -2,11 +2,11 @@
 """
 unittest for the Place module
 """
-
 import unittest
 from datetime import datetime
 from models.review import Review
 from models.base_model import BaseModel
+
 
 class TestReview(unittest.TestCase):
     """
@@ -43,4 +43,4 @@ class TestReview(unittest.TestCase):
     def test_ids(self):
         review1 = Review()
         review2 = Review()
-        self.assertEqual(review1.id, review2.id)
+        self.assertNotEqual(review1.id, review2.id)
