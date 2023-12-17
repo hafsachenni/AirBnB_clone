@@ -66,8 +66,20 @@ h4{
     border: 1px solid #DDDDDD;
     display: none;
     border-radius: 4px;
+    margin-top: 20px;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    margin-block-start: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -30px;
+    padding: 15px;
 }
 
+.popover ul{
+    list-style-type: none;
+    padding-left: 10%;
+}
 .popover h2{
     font-size: 16px;
     margin-top: 20px;
@@ -75,7 +87,7 @@ h4{
 }
 
 .amenities .popover ul {
-    padding-left: 18%;
+    padding-left: 20%;
 }
 .amenities:hover .popover,
 .locations:hover .popover {
